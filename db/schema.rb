@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_16_162001) do
+ActiveRecord::Schema.define(version: 2020_10_16_172023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "cost"
+    t.string "country_of_origin"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "author"
+    t.string "content_body"
+    t.integer "rating"
+    t.integer "product_id"
+  end
+
+  add_foreign_key "reviews", "products"
 end
