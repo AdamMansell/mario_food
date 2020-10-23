@@ -15,17 +15,12 @@ class ProductsController < ApplicationController
   def create
     # Code for creating a new product goes here.
     @product = Product.new(product_params)
-    if @album.save
+    if @product.save
       redirect_to products_path
     else
       render :new
     end
   end
-
-  private
-    def product_params
-      params.require(:product).permit(:name, :cost, :country_of_origin)
-    end
 
   def edit
     # Code for editing a product form goes here.
@@ -35,15 +30,14 @@ class ProductsController < ApplicationController
 
   def show
     # Code for showing a single product goes here.
-    @product = Product.find(params[:id])
-    render :show
+    @product = Product.find(params[:id])    
   end
 
   def update
     # Code for updating a product goes here.
-    @product= Product.find(params[:id])
+    @product = Product.find(params[:id])
     if @product.update(product_params)
-      redirect_to products_path
+      redirect_to product_path(@product)
     else
       render :edit
     end
@@ -55,4 +49,10 @@ class ProductsController < ApplicationController
     @product.destroy
     redirect_to product_path
   end
+
+  private
+  
+    def product_params
+      params.require(:product).permit(:name, :cost, :country_of_origin)
+    end
 end
