@@ -10,5 +10,12 @@
   <p>There are no products yet.</p>
 <% end %>
 
+<hr>
+<h3> Most Recent Products </h3>
+
+<% @most_recent_products.each do |product| %>
+  <li><%= link_to product.name, product_path(product) %></li>
+<% end %>
+<hr>
 
 <p><%= link_to "Create new product", new_product_path %></p>
