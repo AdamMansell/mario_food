@@ -1,0 +1,7 @@
+<h3> Review of the Product: <%= @product.name %> </h3>
+
+<p> Author: <%= @review.author %> </p>
+<p> Content Body: <%= @review.content_body %> </p>
+<p> Rating: <%= @review.rating %> </p>
+
+<p><%= link_to "Return to product", product_path(@product) %></p>
