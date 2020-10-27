@@ -10,4 +10,18 @@
   <%= f.submit %>
 <% end %>
 
+<br />
+<br />
+
+<% if @review.errors.any? %>
+  <h3> Please fix the following errors, then try again! </h3> 
+  <div class="ui warning message">  
+    <ul class="list">
+      <% @review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <p><%= link_to "Return to product", product_path(@product) %></p>
