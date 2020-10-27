@@ -13,4 +13,15 @@
 <br />
 <br />
 
+<% if @product.errors.any? %>
+  <h3> Please fix the following errors, then try again! </h3> 
+  <div class="ui warning message">  
+    <ul class="list">
+      <% @product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= link_to 'Back to Products', products_path %>
