@@ -18,4 +18,11 @@
 <% end %>
 <hr>
 
+<h3> Products with the most Reviews </h3>
+
+<% @products_with_most_reviews.each do |product| %>
+  <li><%= link_to product.name, product_path(product) %> (Reviews Count: <%= product.reviews_count %>)</li>
+<% end %>
+<hr>
+
 <p><%= link_to "Create new product", new_product_path %></p>
