@@ -36,3 +36,17 @@ describe "Edit a product" do
     expect(page).to have_content 'Canada'
   end
 end
+
+describe "Delete a product" do
+  it "deletes a product" do
+    visit products_path
+    click_link 'Create new product'
+    fill_in 'Name', :with => 'Beer'
+    fill_in 'Cost', :with => 1
+    fill_in 'Country of origin', :with => 'USA'
+    click_on 'Create Product'
+    click_link 'Beer', match: :first
+    click_link 'Delete product'
+    expect(page).to have_no_content 'Beer'
+  end
+end
