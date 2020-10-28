@@ -20,3 +20,19 @@ describe "Add a product" do
     expect(page).to have_content "Country of origin can't be blank"    
   end
 end
+
+describe "Edit a product" do
+  it "edits a product" do
+    visit products_path
+    click_link 'Create new product'
+    fill_in 'Name', :with => 'kung pao chicken'
+    fill_in 'Cost', :with => 15
+    fill_in 'Country of origin', :with => 'USA'
+    click_on 'Create Product'
+    click_link 'Kung Pao Chicken', match: :first
+    click_link 'Edit Product'
+    fill_in 'Country of origin', :with => 'Canada'
+    click_on 'Update Product'
+    expect(page).to have_content 'Canada'
+  end
+end
