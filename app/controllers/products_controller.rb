@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 class ProductsController < ApplicationController
   def index
     # Code for listing all products goes here.
     @products = Product.all
     @most_recent_products = Product.order(created_at: :desc).limit(3)
-    @products_with_most_reviews = Product.select("products.id, products.name, count(reviews.id) as reviews_count")
+    @products_with_most_reviews = Product.select('products.id, products.name, count(reviews.id) as reviews_count')
                                          .joins(:reviews)
-                                         .group("products.id")
-                                         .order("reviews_count DESC")
+                                         .group('products.id')
+                                         .order('reviews_count DESC')
                                          .limit(3)
   end
 
@@ -54,9 +56,9 @@ class ProductsController < ApplicationController
   end
 
   private
-  
-    def product_params
-      # strong params, whitelisting attributes to be saved to the database
-      params.require(:product).permit(:name, :cost, :country_of_origin)
-    end
+
+  def product_params
+    # strong params, whitelisting attributes to be saved to the database
+    params.require(:product).permit(:name, :cost, :country_of_origin)
+  end
 end

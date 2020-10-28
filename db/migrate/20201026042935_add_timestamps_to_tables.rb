@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddTimestampsToTables < ActiveRecord::Migration[6.0]
   def change
     add_column :products, :created_at, :datetime, null: false
