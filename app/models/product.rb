@@ -10,7 +10,7 @@ class Product < ApplicationRecord
       reviews.sum(:rating) / reviews.count
     else
       0.0
-    end  
+    end
   end
 
   def titlize_name
