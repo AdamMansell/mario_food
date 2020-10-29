@@ -37,4 +37,19 @@ describe "Add a review" do
       expect(page).to have_content review_content_body_2
     end
   end
+
+  describe "Show a particular review" do
+    it "displays a particular review of a product" do
+      product = Product.create!(name: 'Mango Milk Shake', country_of_origin: 'USA', cost: 10)
+      review_content_body = 'Tastes just like a real mango even though it is a bunch of chemicals that have no actual mango in it at all.'      
+      review = product.reviews.create!(author: 'Adam', content_body: review_content_body, rating: 5)      
+      
+      visit "/products/#{product.id}/reviews/#{review.id}"
+          
+      expect(page).to have_content "Review of the Product: #{product.name}"
+      expect(page).to have_content 'Author: Adam'
+      expect(page).to have_content "Content Body: #{review_content_body}"
+      expect(page).to have_content 'Rating: 5'          
+    end
+  end  
 end
