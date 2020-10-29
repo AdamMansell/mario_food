@@ -37,6 +37,21 @@ describe "Edit a product" do
   end
 end
 
+describe "Show a product" do
+  it "displays a product" do
+    product = Product.create!(name: 'Mango Milk Shake', country_of_origin: 'USA', cost: 10)
+    product.reviews.create!(author: Faker::Name.name, content_body: Faker::Lorem.paragraph_by_chars(number: 100, supplemental: false), rating: 5)
+    product.reviews.create!(author: Faker::Name.name, content_body: Faker::Lorem.paragraph_by_chars(number: 100, supplemental: false), rating: 3)
+    
+    visit "/products/#{product.id}"
+
+    expect(page).to have_content 'Mango Milk Shake'
+    expect(page).to have_content 'Cost: $ 10'
+    expect(page).to have_content 'Country of Origin: USA'
+    expect(page).to have_content 'Average Rating: 4'    
+  end
+end
+
 describe "Delete a product" do
   it "deletes a product" do
     visit products_path
