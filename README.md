@@ -8,16 +8,45 @@
 This is a Ruby/Rails website in which a one-to-many database relationship is worked with in order to properly create a user-friendly, functional website for Mario's store. The website consists of Products, and their Reviews, that both have full CRUD functionality.
 
 ## Setup
-Clone this repository.
 
-Open the project files in your text editor.
+You should have Ruby installed in your machine.
 
-To view a file in the browser:
+Clone the repository from github:
+```
+> git clone https://github.com/AdamMansell/mario_food.git
+```
+Then `cd` into the repository:
+```
+> cd mario_food
+```
 
-Right click one file at a time & copy it's path.
+Next, install the project dependencies:
 
-Open your prefered internet browser and paste the file path to view the file.
-(If using mac, after pasting link in search bar, check for "file" dropdown option before hitting return).
+```
+bundle install
+```
+
+Create and populate the database with seed data:
+
+```
+> bundle exec rails db:setup
+```
+
+Run the Rails server:
+
+```
+bundle exec rails s
+```
+
+Visit: `http://localhost:3000` to see the application in action!
+
+## Run spec test:
+You can run the spec tests by typing the following in the terminal:
+
+```
+ bundle exec rspec
+ ```
+
 
 ## Technologies Used
 For this exercise I used Ruby, HTML, JS & CSS.
