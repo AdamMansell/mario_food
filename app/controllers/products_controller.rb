@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
     # Code for updating a product goes here.
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      redirect_to product_path(@product)
+      redirect_to product_path(@product), notice: 'Product updated successfully!'
     else
       render :edit
     end
@@ -54,7 +54,7 @@ class ProductsController < ApplicationController
     # Code for deleting a product goes here.
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to products_path
+    redirect_to products_path, notice: 'Product deleted successfully!'
   end
 
   private
