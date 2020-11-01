@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ProductsController < ApplicationController
+  before_action :ensure_admin_user!, except: %i[index show]
+
   def index
     # Code for listing all products goes here.
     @products = Product.all
@@ -60,5 +62,12 @@ class ProductsController < ApplicationController
   def product_params
     # strong params, whitelisting attributes to be saved to the database
     params.require(:product).permit(:name, :cost, :country_of_origin)
+  end
+
+  def ensure_admin_user!
+    unless current_user.admin?
+      sign_out
+      redirect_to new_user_session_path, notice: 'You have to sign in as admin user to do this action!'
+    end
   end
 end
