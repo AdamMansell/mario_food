@@ -65,6 +65,7 @@ class ProductsController < ApplicationController
   end
 
   def ensure_admin_user!
+    # byebug
     unless current_user.admin?
       sign_out
       redirect_to new_user_session_path, notice: 'You have to sign in as admin user to do this action!'
